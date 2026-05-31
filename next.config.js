@@ -2,24 +2,24 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'monetizaia.com.br',
-      },
-      {
-        protocol: 'https',
-        hostname: 'khaki-anteater-104372.hostingersite.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'secure.gravatar.com',
-      },
+      { protocol: 'https', hostname: '**.wordpress.com' },
+      { protocol: 'https', hostname: 'secure.gravatar.com' },
+      { protocol: 'http',  hostname: 'localhost' },
+      { protocol: 'https', hostname: 'monetizaia.com.br' },
+      { protocol: 'http',  hostname: '77.37.127.180' },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/wp-json/:path*',
+        destination: 'http://77.37.127.180/wp-json/:path*',
+      },
+      {
+        source: '/wp-content/:path*',
+        destination: 'http://77.37.127.180/wp-content/:path*',
+      },
+    ]
+  },
 }
-
 module.exports = nextConfig
